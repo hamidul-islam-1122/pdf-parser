@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+  
         {children}
+      {/* <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@5.5.207/+esm"></script> */}
       </body>
     </html>
   );
