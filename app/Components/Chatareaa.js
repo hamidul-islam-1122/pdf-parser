@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 const Chatareaa = () => {
   const [pdfjsLib, setPdfjsLib] = useState(null);
   const [summary, setsummary] = useState("");
-
+  const [loading, setloading] = useState(false)
   useEffect(() => {
     const loadPdfJs = async () => {
       const pdfjs = await import("pdfjs-dist/build/pdf");
@@ -16,6 +16,8 @@ const Chatareaa = () => {
     loadPdfJs();
   }, []);
 const sendText = (text) => {
+  setloading(true)
+  setsummary("");
   fetch("/api", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -23,12 +25,14 @@ const sendText = (text) => {
   })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
+    
       setsummary(data.summary);
     })
-    .catch((err) => console.error(err));
-};
-
+    .catch((err) => console.error(err))
+    .finally(() => setloading(false))
+    
+  };
+  
   const handleFileRead = (e) => {
     const filearray = new Uint8Array(e.target.result);
 
@@ -64,7 +68,7 @@ const sendText = (text) => {
         />
       </div>
 
-      <p className="p-3">{summary}</p>
+      {loading ? <p className="p-3">Loading...</p> : <p className="p-3">{summary}</p>}
     </div>
   );
 };
