@@ -58,10 +58,10 @@ const sendText = (text) => {
   };
 
   return (
-    <div className="flex flex-col-reverse">
+    <div className="flex flex-col-reverse ">
       <div className="flex justify-center">
         <input
-          className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500 max-lg:w-90vw"
           type="file"
           onChange={InputChange}
           accept="application/pdf"
